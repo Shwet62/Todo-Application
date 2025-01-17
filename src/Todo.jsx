@@ -1,6 +1,8 @@
 import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
 import "./Todo.css";
+import Button from "@mui/material/Button";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 export default function Todo() {
   let [todos, setTodos] = useState([
@@ -65,11 +67,13 @@ export default function Todo() {
               >
                 {todo.task}
               </span>
-              <button onClick={() => deleteTodo(todo.id)}>Delete</button>
+              <Button variant="outlined" startIcon={<DeleteIcon />} onClick={() => deleteTodo(todo.id)} >
+                Delete
+              </Button>
               {!todo.isDone && (
-                <button onClick={() => markAsDone(todo.id)}>
-                  Mark as Done
-                </button>
+                <Button variant="contained" color="success" onClick={() => markAsDone(todo.id)} >
+                Mark As Done
+              </Button>
               )}
             </li>
           ))}
